@@ -56,19 +56,14 @@ xhr.addEventListener('load', () => {
       ul.appendChild(li);
       li.innerHTML = `<div class="check"><img src="${checking}" alt="True"></div><span class="spanName">${ticket.name}</span><span>${ticket.created}</span><button class="change">Редактировать</button><button class="delete">Удалить</button><div class="description"></div><span class="hidden id">${ticket.id}</span>`;
       const image = li.getElementsByTagName('img')[0];
-
-      const checkStatus = li.getElementsByClassName('check')[0];
-      checkStatus.addEventListener('click', () => {
-        if (!ticket.status) {
-          ticket.status === true;
-        } else {
-          ticket.status === false;
-        }
-      });
-
       if (!ticket.status) {
         image.remove();
       }
+
+      const checkStatus = li.getElementsByClassName('check')[0];
+      checkStatus.addEventListener('click', () => {
+        image.classList.toggle('hidden');
+      });
     });
 
     const btnsEdit = document.getElementsByClassName('change');
