@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-param-reassign */
 import checking from '../images/check_true.png';
 
@@ -55,20 +56,19 @@ xhr.addEventListener('load', () => {
       ul.appendChild(li);
       li.innerHTML = `<div class="check"><img src="${checking}" alt="True"></div><span class="spanName">${ticket.name}</span><span>${ticket.created}</span><button class="change">Редактировать</button><button class="delete">Удалить</button><div class="description"></div><span class="hidden id">${ticket.id}</span>`;
       const image = li.getElementsByTagName('img')[0];
+
+      const checkStatus = li.getElementsByClassName('check')[0];
+      checkStatus.addEventListener('click', () => {
+        if (!ticket.status) {
+          ticket.status === true;
+        } else {
+          ticket.status === false;
+        }
+      });
+
       if (!ticket.status) {
         image.remove();
       }
-
-      const checkStatus = document.getElementsByClassName('check')[0];
-      checkStatus.addEventListener('click', () => {
-        if (checkStatus.childNodes[0] === false) {
-          console.log(checkStatus.childNodes[0]);
-          checkStatus.textContent = `<img src="${checking}" alt="True"></img>`;
-        } else {
-          image.remove();
-          console.log(checkStatus.childNodes[0]);
-        }
-      });
     });
 
     const btnsEdit = document.getElementsByClassName('change');
